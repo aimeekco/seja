@@ -1,5 +1,6 @@
 'use client';
 import { createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const MyContext = createContext(null);
 import Image from "next/image"
@@ -16,6 +17,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 function LoginForm() {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    navigate("/pomona");
+  }
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
