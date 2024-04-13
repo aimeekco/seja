@@ -1,7 +1,7 @@
 'use client';
 import { createContext } from 'react';
 
-//import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 export const MyContext = createContext(null);
 import Image from "next/image"
 import Link from "next/link"
@@ -52,9 +52,14 @@ function LoginForm() {
             </div>
             <Input id="password" type="password" required />
           </div>
-          <Button type="submit" className="w-full" href="/pomona">
+          <Link href="/Pomona">
+  <Button type="submit" className="w-full">
+    Login
+  </Button>
+</Link>
+          {/* <Button type="submit" className="w-full" href="/pomona">
             Login
-          </Button>
+          </Button> */}
         </div>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
