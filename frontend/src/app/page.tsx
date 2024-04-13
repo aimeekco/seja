@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 export default function Home() {
   return (
       <div >
-        <Pomona />
+        <Landing />
       </div>
   );
 }

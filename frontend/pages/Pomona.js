@@ -1,6 +1,6 @@
-//import React from 'react';
+'use client';
 import ImgMapper from 'react-img-mapper';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function Pomona() {
   const router = useRouter();
