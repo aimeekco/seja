@@ -3,11 +3,13 @@ import Landing from "../../pages/Landing";
 import Pomona from "../../pages/Pomona";
 
 import { BrowserRouter as Router } from "react-router-dom";
+import {UserInfo} from "../../pages/UserInfo";
 
 export default function Home() {
   return (
       <div >
         <Landing />
+        <UserInfo />
       </div>
   );
 }
