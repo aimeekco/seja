@@ -1,7 +1,7 @@
 'use client';
 import { createContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 
+import { useRouter } from "next/navigation";
 export const MyContext = createContext(null);
 import Image from "next/image"
 import Link from "next/link"
@@ -17,16 +17,12 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-<<<<<<< HEAD
-export function LoginForm() {
-=======
+
 function LoginForm() {
-  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate("/pomona");
-  }
->>>>>>> 9cd16a622eae0cdf196a02c43c6388a1c7e206b1
+    router.push("/pomona");
+  };
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -56,9 +52,14 @@ function LoginForm() {
             </div>
             <Input id="password" type="password" required />
           </div>
-          <Button type="submit" className="w-full">
+          <Link href="/Pomona">
+  <Button type="submit" className="w-full">
+    Login
+  </Button>
+</Link>
+          {/* <Button type="submit" className="w-full" href="/pomona">
             Login
-          </Button>
+          </Button> */}
         </div>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}

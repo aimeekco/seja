@@ -1,14 +1,14 @@
-'use client';
+import React from 'react';
 import Landing from "../../pages/Landing";
+import Pomona from "../../pages/Pomona";
+
 import { BrowserRouter as Router } from "react-router-dom";
 
 export default function Home() {
   return (
-    <Router>
       <div >
         <Landing />
       </div>
-    </Router>
   );
 }
   //   <main className="flex min-h-screen flex-col items-center justify-between p-24">
