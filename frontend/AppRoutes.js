@@ -1,16 +1,11 @@
-import { Route, Routes } from 'react-router-dom';
-import Landing from './pages/Landing';
-import Pomona from './pages/Pomona';
-import Gibson from './pages/Gibson';
+import Link from 'next/link';
 
-function AppRoutes() {
-    return (
-        <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/pomona" element={<Pomona />} />
-            <Route path="/gibson" element={<Gibson />} />
-        </Routes>
-    )
+function Navigation() {
+  return (
+    <nav>
+      <Link href="/">Home</Link>
+      <Link href="/pomona">Pomona</Link>
+      <Link href="/gibson">Gibson</Link>
+    </nav>
+  );
 }
-
-export default AppRoutes;

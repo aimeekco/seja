@@ -1,5 +1,6 @@
 'use client';
 import { createContext } from 'react';
+import { useRouter } from 'next/router';
 
 
 export const MyContext = createContext(null);
@@ -21,6 +22,11 @@ import { Label } from "@/components/ui/label"
 
 
 function LoginForm() {
+  const router = useRouter();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    router.push("/pomona");
+  };
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -50,7 +56,7 @@ function LoginForm() {
             </div>
             <Input id="password" type="password" required />
           </div>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" onClick={handleSubmit}>
             Login
           </Button>
         </div>
