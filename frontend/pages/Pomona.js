@@ -1,6 +1,6 @@
-'use client';
+//'use client';
 import ImgMapper from 'react-img-mapper';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 export default function Pomona() {
   const router = useRouter();
@@ -11,7 +11,10 @@ export default function Pomona() {
         name: "Area 1", 
         shape: "rect", 
         coords: [0,0,100,100], 
-        onClick: () => router.push('/Gibson') 
+        onClick: () => {
+            console.log('Area 1 clicked');
+            router.push('/Gibson') 
+        }
       },
       { 
         name: "Area 2", 
