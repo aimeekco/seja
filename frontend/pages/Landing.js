@@ -17,16 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-<<<<<<< HEAD
 export function LoginForm() {
-=======
-function LoginForm() {
-  const navigate = useNavigate();
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    navigate("/pomona");
-  }
->>>>>>> 9cd16a622eae0cdf196a02c43c6388a1c7e206b1
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
