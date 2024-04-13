@@ -1,8 +1,8 @@
 'use client';
 import { createContext } from 'react';
-import { useRouter } from 'next/router';
 
-
+import { useRouter } from "next/router";
+import AppRoutes from "../AppRoutes";
 export const MyContext = createContext(null);
 import Image from "next/image"
 import Link from "next/link"
@@ -22,7 +22,6 @@ import { Label } from "@/components/ui/label"
 
 
 function LoginForm() {
-  const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     router.push("/pomona");
@@ -56,7 +55,7 @@ function LoginForm() {
             </div>
             <Input id="password" type="password" required />
           </div>
-          <Button type="submit" className="w-full" onClick={handleSubmit}>
+          <Button type="submit" className="w-full" href="/pomona">
             Login
           </Button>
         </div>
