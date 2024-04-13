@@ -1,22 +1,22 @@
+'use client';
 import React from 'react';
-import gibson from '../images/gibson.png';
-import { useNavigate } from 'react-router-dom';
-
-<<<<<<< HEAD
-=======
-function handleSubmit() {
-    const navigate = useNavigate();
-    navigate('/form');
-}
+import { useState } from 'react';
+import '../styles/gibson.css'
 
 
->>>>>>> 74368463911e2b103ac1b4aa14a0c33e1d4786ca
 const Gibson = () => {
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupContent, setPopupContent] = useState("");
+    function togglePopup(content) {
+        setPopupContent(content);
+        setShowPopup(!showPopup);
+    }
+
     return (
         <div>
         <img>
             src= "gibson.png"
-            alt="usemap" 
+            alt="Gibson" 
             usemap="#gfg_map"
             style={{width: 400, height: 400}}
         </img>
@@ -24,27 +24,33 @@ const Gibson = () => {
             <area shape = "rect"
             coords = "0,0, 144, 100"
             alt = "Gibson 418"
-            onClick = {handleSubmit}
+            onClick = {popup}
             />
-<<<<<<< HEAD
-=======
             <area shape = "rect"
             coords = "144,0, 288, 100"
             alt = "Gibson 419"
-            onClick = {handleSubmit}
+            onClick = {popup}
             />
             <area shape = "rect"
             coords = "288,0, 432, 100"
             alt = "Gibson 420"
-            onClick = {handleSubmit}
+            onClick = {popup}
             />
             <area shape = "rect"
             coords = "432,0, 576, 100"
             alt = "Gibson 421"
-            onClick = {handleSubmit}
+            onClick = {popup}
             />
->>>>>>> 74368463911e2b103ac1b4aa14a0c33e1d4786ca
         </map>
+        {showPopup && (
+            <div className="gibson-popup">
+                {popupContent.split('\n').map((line, index) => (
+                    <div key = {index}>{line}</div>
+                ))}
+            </div>
+        )}
         </div>
     );
 }
+
+export default Gibson;
