@@ -1,5 +1,6 @@
 import React from 'react';
 import gibson from '../images/gibson.png';
+import { useNavigate } from 'react-router-dom';
 
 const Gibson = () => {
     return (
@@ -14,9 +15,9 @@ const Gibson = () => {
             <area shape = "rect"
             coords = "0,0, 144, 100"
             alt = "Gibson 418"
-            
+            onClick = {handleSubmit}
             />
         </map>
         </div>
     );
-    }
+}
