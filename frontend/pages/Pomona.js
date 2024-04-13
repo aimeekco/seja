@@ -1,16 +1,28 @@
-import React from 'react';
+//import React from 'react';
 import ImgMapper from 'react-img-mapper';
-import pomonaImage from '/pomonamap.jpeg';
+import { useRouter } from 'next/router';
 
 export default function Pomona() {
+  const router = useRouter();
   const map = {
     name: "my-map",
     areas: [
-      { name: "Area 1", shape: "rect", coords: [0,0,100,100], href: "/page1" },
-      { name: "Area 2", shape: "rect", coords: [100,100,200,200], href: "/page2" },
+      { 
+        name: "Area 1", 
+        shape: "rect", 
+        coords: [0,0,100,100], 
+        onClick: () => router.push('/Gibson') 
+      },
+      { 
+        name: "Area 2", 
+        shape: "rect", 
+        coords: [100,100,200,200], 
+        onClick: () => router.push('/page2') 
+      },
       // Add more areas as needed
     ]
   };
+  const pomonaImage = '/pomonamap.jpeg';
 
   return (
     <div>

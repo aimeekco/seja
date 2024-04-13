@@ -1,12 +1,14 @@
 'use client';
 import Landing from "../../pages/Landing";
+import Pomona from "../../pages/Pomona";
+
 import { BrowserRouter as Router } from "react-router-dom";
 
 export default function Home() {
   return (
     <Router>
       <div >
-        <Landing />
+        <Pomona />
       </div>
     </Router>
   );
