@@ -60,14 +60,14 @@ const Gibson = () => {
       status: roomStatus[room],
     }));
 
-    const handleClick = () => {
+    const handleClick = (room) => {
       fetch('http://127.0.0.1:5000/assign', {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ room: area.room }),
+        body: JSON.stringify({ room: room }),
       })
       .then(response => response.json())
       .then(data => {
@@ -98,6 +98,8 @@ const Gibson = () => {
                             height: `${coords[3] - coords[1]}px`,
                             position: 'absolute'
                         }}
+                        onClick={() => handleClick(room)} // Add this line
+
                     >
                         <span style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
                             {roomStatus[room] || 'Loading...'}
