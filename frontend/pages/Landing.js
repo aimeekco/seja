@@ -1,5 +1,5 @@
 'use client';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 import { useRouter } from "next/navigation";
 export const MyContext = createContext(null);
@@ -19,11 +19,26 @@ import { Label } from "@/components/ui/label"
 
 
 function LoginForm() {
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    router.push("/pomona");
-  };
-  return (
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        const response = await fetch('http://127.0.0.1:5000/api/data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+      
+        const data = await response.json();
+        console.log(data);
+      };
+      
+
+  const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
+    return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
@@ -41,6 +56,8 @@ function LoginForm() {
               className="text-white text-opacity-20" // Adjust opacity as needed
               placeholder="janedoe@mymail.pomona.edu"
               required
+              value={email}
+                onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-2">
@@ -50,10 +67,14 @@ function LoginForm() {
                 Forgot your password?
               </Link>
             </div>
-            <Input id="password" type="password" required />
+            <Input id="password" type="password" required 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+
+            />
           </div>
           <Link href="/Pomona">
-  <Button type="submit" className="w-full">
+  <Button type="submit" className="w-full" onClick={handleSubmit}>
     Login
   </Button>
 </Link>
