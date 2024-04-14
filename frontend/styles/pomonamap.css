@@ -1,19 +1,33 @@
 .image-container {
   text-align: center;
+  margin-top:20px;
   position: relative;
   width: 100%;
   height: auto;
 }
 
+.pomona-popup {
+  position: absolute;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 20px;
+  z-index: 9;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
 .overlay {
   position: absolute;
-  top: 69.3%;
-  left: 45.7%;
-  /* top: 145vh; 
+  top: 75.1%;
+  left: 46.5%;
+  /* top: 145vh;  
   left: 70vh; */
-  transform: translate(-50%, -50%);
-  width: 35px; /* Adjust according to your coordinates */
-  height: 50px; /* Adjust according to your coordinates */
+  width: 26px; /* Adjust according to your coordinates */
+  height: 36px; /* Adjust according to your coordinates */
   background-color: rgba(255, 0, 0, 0.5); /* Red color with 50% transparency */
   cursor: pointer; /* Change cursor on hover to indicate it's clickable */
 }
