@@ -42,7 +42,7 @@ const Gibson = () => {
                     src="gibson.png"
                     alt="Gibson" 
                     useMap="#gfg_map"
-                    style={{width: 500}}
+                    style={{width: 700}}
                 />
                 {areas.map((area, index) => {
                     const coords = area.coords.split(',').map(Number);
