@@ -1,11 +1,16 @@
 .image-container {
-  position: relative; /* Ensure the container is positioned */
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 
 .overlay {
   position: absolute;
-  top: 162vh; /* Adjust according to your coordinates */
-  left: 99vh; /* Adjust according to your coordinates */
+  top: 69.3%;
+  left: 45.7%;
+  /* top: 145vh; 
+  left: 70vh; */
   transform: translate(-50%, -50%);
   width: 35px; /* Adjust according to your coordinates */
   height: 50px; /* Adjust according to your coordinates */

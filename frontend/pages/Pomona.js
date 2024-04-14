@@ -23,11 +23,11 @@ const Pomona = () => {
           style={{ width: "auto", height: "auto" }}
         />
         <div className="overlay" onClick={() => router.push('/Gibson')} />
-        {showPopup && (
-          <div className="pomona-popup">
-            {popupContent.split('\n').map((line, index) => (
-              <div key={index}>{line}</div>
-            ))}
+          {showPopup && (
+            <div className="pomona-popup">
+              {popupContent.split('\n').map((line, index) => (
+                <div key={index}>{line}</div>
+              ))}
           </div>
         )}
       </div>
