@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = 'your-secret-key'  # Replace with your secret key
 
 # Initialize DataFrame
 users = pd.DataFrame(columns=['name','email', 'password', 'time', 'room'])
-
+print(users)
 @app.route('/register', methods=['POST'])
 def register():
     global users
@@ -17,6 +17,8 @@ def register():
     hashed_password = generate_password_hash(data['password'], method='sha256')
     new_user = pd.DataFrame([[data['name'], data['email'], hashed_password, None, None]], columns=['name', 'email', 'password', 'time','room'])
     users = pd.concat([users, new_user], ignore_index=True)
+    print(users)
+    print("hello")
     return jsonify({'message': 'Registered successfully'}), 200
 
 @app.route('/login', methods=['POST'])

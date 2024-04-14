@@ -14,10 +14,15 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+import '../styles/landing.css'
+
+
 function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -29,11 +34,29 @@ function LoginForm() {
       body: JSON.stringify({ email, password }),
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data);
+      // Check the 'message' property of the response data
+      if (data.message === 'Login successful') {
+        // Redirect to UserInfo page on success
+        console.log(data.message);
+        router.push('/Pomona');
+      } else {
+        // Redirect to Error page on failure
+        console.log("bad pass");
+        setError('Incorrect password');
+        setEmail("");
+        setPassword("");
+        return;
+        //router.push('/Error');
+      }
+    })
     .catch((error) => {
+      setError('An unknown error occurred');
       console.error('Error:', error);
+      // Redirect to Error page on error
+      //router.push('/Error');
     });
-    router.push('/UserInfo')
 }
   return (
     <Card className="mx-auto max-w-sm">
@@ -75,6 +98,9 @@ function LoginForm() {
           <Button type="submit" className="w-full" onClick={handleSubmit}>
             Login
           </Button>
+          <div className="error-container">
+            {error && <p className="error">{error}</p>}
+          </div>
         </div>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
