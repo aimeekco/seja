@@ -8,6 +8,7 @@ const Gibson = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [popupContent, setPopupContent] = useState("");
     const [data, setData] = useState([]);
+    const [roomStatus, setRoomStatus] = useState({});
 
     const roomCoords = {
         "Gibson 418" : '40,100, 600, 200',
@@ -17,7 +18,7 @@ const Gibson = () => {
         // Add more rooms as needed
       };
 
-    useEffect(() => {
+      const fetchRoomStatus = () => {
         areas.forEach(area => {
           fetch('http://127.0.0.1:5000/checkroom', {
             method: 'POST',
@@ -27,9 +28,12 @@ const Gibson = () => {
             body: JSON.stringify({ room: area.room }),
           })
             .then(response => response.json())
-            .then(data => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: data.message })));
+            .then(data => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: data.message })))
+            .catch(error => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' })));
         });
-      }, []);
+      };
+
+      useEffect(fetchRoomStatus, []);
     
     function togglePopup(content) {
         setPopupContent(content);
@@ -40,19 +44,18 @@ const Gibson = () => {
         const status = roomStatus[room];
         if (status === 'You have claimed this room') {
           return 'blue';
-        } else if (status.includes('has claimed this room')) {
+        } else if (status && status.includes('has claimed this room')) {
           return 'red';
         } else {
           return 'green';
         }
       }
 
-    const areas = data.map(item => ({
-        coords: item.coords,
-        alt: item.alt,
-        content: item.content,
-        color: determineColor(item),  // determineColor is a function that returns a color based on the item
-      }));
+    const areas = Object.keys(roomCoords).map(room => ({
+  room,
+  coords: roomCoords[room],
+  status: roomStatus[room],
+}));
 
     
 
@@ -89,30 +92,49 @@ const Gibson = () => {
                     style={{width: 700}}
                 />
                 {areas.map((area, index) => {
-                    const coords = area.coords.split(',').map(Number);
-                    const style = {
-                        left: `${coords[0]}px`, 
-                        top: `${coords[1]}px`, 
-                        width: `${coords[2] - coords[0]}px`, 
-                        height: `${coords[3] - coords[1]}px`
-                    };
-                    return (
-                        <div
-                            key={index}
-                            className="overlay"
-                            style={style}
-                            onClick={() => togglePopup(area.content)}
-                        />
-                    );
-                })}
+  const coords = area.coords.split(',').map(Number);
+  const style = {
+    left: `${coords[0]}px`, 
+    top: `${coords[1]}px`, 
+    width: `${coords[2] - coords[0]}px`, 
+    height: `${coords[3] - coords[1]}px`,
+    backgroundColor: determineColor(area.room),
+    position: 'relative', // Add this to position the status text inside the square
+  };
+
+  const handleClick = () => {
+    fetch('http://127.0.0.1:5000/assign', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ room: area.room }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("clicked")
+        fetchRoomStatus();
+
+      // Update the color of the area based on the response
+      // You'll need to replace this comment with the appropriate code for your application
+    })
+    .catch(error => console.error('Error:', error));
+  };
+
+  return (
+    <div
+      key={index}
+      className="overlay"
+      style={style}
+      onClick={handleClick}
+    >
+      <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+        {area.status || 'Loading...'}
+      </div>
+    </div>
+  );
+})}
             </div>
-            {showPopup && (
-                <div className="gibson-popup">
-                    {popupContent.split('\n').map((line, index) => (
-                        <div key = {index}>{line}</div>
-                    ))}
-                </div>
-            )}
         </div>
     );
 }
