@@ -44,7 +44,7 @@ function LoginForm() {
       } else {
         // Redirect to Error page on failure
         console.log("bad pass");
-        setError('Incorrect password');
+        setError('Login Failed');
         setEmail("");
         setPassword("");
         return;
