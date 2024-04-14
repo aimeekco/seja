@@ -94,24 +94,33 @@ def assign():
             occupant = users[users['room'] == new_room]
             if not occupant.empty:
                 # Compare the times
-                if users.loc[user_index, 'year'] < occupant['year'].values[0]:
+                if users.loc[user_index, 'year'] <= occupant['year'].values[0]:
+                    if users.loc[user_index, 'time'] < occupant['time'].values[0]:
                     # Unassign the old user
-                    users.loc[occupant.index[0], 'room'] = None
-                    # Assign the room to the new user
-                    users.loc[user_index, 'room'] = new_room
-                    return jsonify({'message': 'Room assigned successfully'}), 200
+                        users.loc[occupant.index[0], 'room'] = None
+                        # Assign the room to the new user
+                        users.loc[user_index, 'room'] = new_room
+                        session['room'] = new_room
+                        session.modified = True
+                        return jsonify({'message': 'Room assigned successfully'}), 200
+                    else:
+                        return jsonify({'message': 'Room is occupied'}), 409
                 
-                elif users.loc[user_index, 'time'] < occupant['time'].values[0]:
-                    # Unassign the old user
-                    users.loc[occupant.index[0], 'room'] = None
-                    # Assign the room to the new user
-                    users.loc[user_index, 'room'] = new_room
-                    return jsonify({'message': 'Room assigned successfully'}), 200
+                # elif users.loc[user_index, 'time'] < occupant['time'].values[0]:
+                #     # Unassign the old user
+                #     users.loc[occupant.index[0], 'room'] = None
+                #     # Assign the room to the new user
+                #     users.loc[user_index, 'room'] = new_room
+                #     session['room'] = new_room
+                #     session.modified = True
+                #     return jsonify({'message': 'Room assigned successfully'}), 200
                 else:
                     return jsonify({'message': 'Room is occupied'}), 409
             else:
                 # Assign the room to the new user
                 users.loc[user_index, 'room'] = new_room
+                session['room'] = new_room
+                session.modified = True
                 return jsonify({'message': 'Room assigned successfully'}), 200
     else:
         return jsonify({'message': 'User not found'}), 410
