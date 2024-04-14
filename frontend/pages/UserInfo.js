@@ -25,7 +25,7 @@ function UserInfo() {
     const router = useRouter();
     const handleSubmit = (event) => {
         event.preventDefault();
-        router.push('/Gibson'); 
+        router.push('/Pomona'); 
     };
 
     return (
@@ -36,10 +36,6 @@ function UserInfo() {
             <CardContent>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 justify-center">
-                        <div className="grid gap-2">
-                            <Label htmlFor="name" className="w-24">Name</Label>
-                            <Input type="text" id="name" placeholder="Enter your name" className="w-64" required style={{ width: "300px", height: "40px" }}/>
-                        </div>
                         <div className="grid gap-2">
                             <Label htmlFor="year" className="w-24">Class Year</Label>
                             <Select className="w-64">

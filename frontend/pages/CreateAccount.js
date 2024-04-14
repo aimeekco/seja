@@ -41,7 +41,7 @@ const LoginComponent = () => {
     
     // Handle the login logic here
     
-    router.push('/UserInfo')
+    router.push('/Pomona')
     //console.log(`Email: ${email}, Password: ${password}`);
   };
 
