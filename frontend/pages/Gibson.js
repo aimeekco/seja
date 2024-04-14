@@ -11,10 +11,10 @@ const Gibson = () => {
     const [roomStatus, setRoomStatus] = useState({});
 
     const roomCoords = {
-        "Gibson 418" : '40,100, 600, 200',
-        "Gibson 419" : '144,0, 288, 100',
-        "Gibson 420" : '288,0, 432, 100',
-        "Gibson 421" : '432,0, 576, 100',
+        "Gibson 418" : '40, 100, 600, 200',
+        "Gibson 419" : '144, 0, 288, 100',
+        "Gibson 420" : '288, 0, 432, 100',
+        "Gibson 421" : '432, 0, 576, 100',
         // Add more rooms as needed
       };
 
@@ -114,9 +114,9 @@ const Gibson = () => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log("clicked")
+        
         fetchRoomStatus();
-
+        console.log(data)
       // Update the color of the area based on the response
       // You'll need to replace this comment with the appropriate code for your application
     })
