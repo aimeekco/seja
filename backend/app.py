@@ -133,19 +133,24 @@ def check_room():
         print("empty")
         return jsonify({'message': 'Empty'}), 200
     
-@app.route('/name', methods=['GET'])
+@app.route('/name', methods=['POST'])
 def name():
     global users
+    print(str(session['name']))
+
     return jsonify({'message': str(session['name'])}), 200
 
-@app.route('/time', methods=['GET'])
+@app.route('/time', methods=['POST'])
 def time():
     global users
+    print(str(session['time']))
     return jsonify({'message': str(session['time'])}), 200
 
-@app.route('/room', methods=['GET'])
+@app.route('/room', methods=['POST'])
 def room():
     global users
+    print(str(session['room']))
+
     return jsonify({'message': str(session['room'])}), 200
 
 
