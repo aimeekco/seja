@@ -1,11 +1,14 @@
 'use client';
+<<<<<<< HEAD
 import { createContext, useState } from 'react';
 
 import { useRouter } from "next/navigation";
 export const MyContext = createContext(null);
+=======
+>>>>>>> 5bda4d292df1cf7188a5c072728a5afb1a090ba0
 import Image from "next/image"
 import Link from "next/link"
-
+import { useRouter } from 'next/router';
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -17,8 +20,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-
 function LoginForm() {
+<<<<<<< HEAD
     const handleSubmit = async (e) => {
         e.preventDefault();
       
@@ -39,6 +42,14 @@ function LoginForm() {
     const [password, setPassword] = useState('');
   
     return (
+=======
+  const router = useRouter();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    router.push('/UserInfo')
+  }
+  return (
+>>>>>>> 5bda4d292df1cf7188a5c072728a5afb1a090ba0
     <Card className="mx-auto max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
@@ -53,7 +64,7 @@ function LoginForm() {
             <Input
               id="email"
               type="email"
-              className="text-white text-opacity-20" // Adjust opacity as needed
+              className="text-white text-opacity-20" 
               placeholder="janedoe@mymail.pomona.edu"
               required
               value={email}
@@ -73,18 +84,27 @@ function LoginForm() {
 
             />
           </div>
+<<<<<<< HEAD
           <Link href="/Pomona">
   <Button type="submit" className="w-full" onClick={handleSubmit}>
     Login
   </Button>
 </Link>
           {/* <Button type="submit" className="w-full" href="/pomona">
+=======
+          {/* <Link href="/UserInfo">
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
+          </Link> */}
+          <Button type="submit" className="w-full" onClick={handleSubmit}>
+>>>>>>> 5bda4d292df1cf7188a5c072728a5afb1a090ba0
             Login
-          </Button> */}
+          </Button>
         </div>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="#" className="underline">
+          <Link href="/CreateAccount" className="underline">
             Sign up
           </Link>
         </div>
@@ -109,8 +129,7 @@ export default function Home() {
         </div>
       </div>
 
-      <LoginForm />  {/* This line integrates the LoginForm in the view */}
-
+      <LoginForm />  
       <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
         <Image
           className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
