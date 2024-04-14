@@ -17,10 +17,10 @@ const Pomona = () => {
     return (
       <div className="image-container">
         <img
-          src="pomonamap.jpeg"
+          src="pomonamap.png"
           alt="Pomona"
           useMap="#gfg_map"
-          style={{ width: "auto", height: "auto" }}
+          style={{ width: "750px", height: "auto" }}
         />
         <div className="overlay" onClick={() => router.push('/Gibson')} />
           {showPopup && (
