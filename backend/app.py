@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify, session
-from flask_session import Session
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import pandas as pd
-from redis import Redis
 
 
 app = Flask(__name__)
