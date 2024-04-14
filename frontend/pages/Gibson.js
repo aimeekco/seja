@@ -1,7 +1,6 @@
 'use client';
-import React from 'react';
-import { useState  , useEffect} from 'react';
 import '../styles/gibson.css';
+import React, { useState, useEffect } from 'react'; // Add this line
 
 
 const Gibson = () => {
@@ -15,8 +14,24 @@ const Gibson = () => {
     "Gibson 419": '67,10, 172, 84',
     "Gibson 420": '174,10, 278, 84',
     "Gibson 421": '280,10, 384, 84',
-        // Add more rooms as needed
-      };
+    "Gibson 417": '-40,84, 23, 160',
+    "Gibson 415": '-40,161, 23, 240',
+    "Gibson 412": '-40,286, 23, 372',
+    "Gibson 416": '53,172, 172, 240',
+    "Gibson 403": '172,172, 289, 240',
+    "Gibson 414": '53,266, 125, 364',
+    "Gibson 413": '53,364, 125, 463',
+    "Gibson 411": '125,398, 185, 463',
+    "Gibson 410": '23,493, 162, 552',
+    "Gibson 409": '238,493, 321, 580',
+    "Gibson 408": '186,398, 289, 463',
+    "Gibson 407": '322,338, 384, 413',
+    "Gibson 406": '215,298, 289, 398',
+    "Gibson 405": '215,240, 289, 298',
+    "Gibson 404": '322,220, 384, 337',
+    "Gibson 402": '362,115, 433, 219',
+    "Gibson 401": '434,115, 502, 219',
+     };
 
     const fetchRoomStatus = () => {
       areas.forEach(area => {
@@ -29,12 +44,18 @@ const Gibson = () => {
           body: JSON.stringify({ room: area.room }),
         })
           .then(response => response.json())
-          .then(data => setRoomStatus(prevStatus => 
-              
-              ({ ...prevStatus, [area.room]: data.message })))
-          .catch(error => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' })));
-      });
-    };
+          .then(data => {
+            setRoomStatus(prevStatus => {
+              const updatedStatus = { ...prevStatus, [area.room]: data.message };
+              return updatedStatus;
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching room status:', error);
+          setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' }));
+        });
+    });
+  };
  
     useEffect(fetchRoomStatus, []);
     
