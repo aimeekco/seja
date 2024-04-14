@@ -1,4 +1,5 @@
 'use client';
+import {useState} from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from 'next/navigation';
@@ -15,10 +16,25 @@ import { Label } from "@/components/ui/label"
 
 function LoginForm() {
   const router = useRouter();
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const response = await fetch('http://127.0.0.1:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
     router.push('/UserInfo')
-  }
+}
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -37,6 +53,7 @@ function LoginForm() {
               className="text-white text-opacity-20" 
               placeholder="janedoe@mymail.pomona.edu"
               required
+              value={email} onChange={e => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-2">
@@ -46,7 +63,9 @@ function LoginForm() {
                 Forgot your password?
               </Link>
             </div>
-            <Input id="password" type="password" required />
+            <Input id="password" type="password" required 
+            value={password} onChange={e => setPassword(e.target.value)}
+            />
           </div>
           {/* <Link href="/UserInfo">
             <Button type="submit" className="w-full">
