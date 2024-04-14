@@ -1,7 +1,6 @@
 'use client';
 import { createContext } from 'react';
 
-import { useRouter } from "next/navigation";
 export const MyContext = createContext(null);
 import Image from "next/image"
 import Link from "next/link"
@@ -19,10 +18,6 @@ import { Label } from "@/components/ui/label"
 
 
 function LoginForm() {
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    router.push("/pomona");
-  };
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -53,17 +48,17 @@ function LoginForm() {
             <Input id="password" type="password" required />
           </div>
           <Link href="/Pomona">
-  <Button type="submit" className="w-full">
-    Login
-  </Button>
-</Link>
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
+          </Link>
           {/* <Button type="submit" className="w-full" href="/pomona">
             Login
           </Button> */}
         </div>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="#" className="underline">
+          <Link href="/CreateAccount" className="underline">
             Sign up
           </Link>
         </div>
