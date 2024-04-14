@@ -49,16 +49,6 @@ const LoginComponent = () => {
     <div className="login-container">
       <h2 className="login-title">Create Account</h2>
       <form onSubmit={handleLogin} className="login-form">
-      <label htmlFor="name" className="login-label">Name</label>
-        <input
-          type="name"
-          id="name"
-          name="name"
-          placeholder="name"
-          value={name}
-          onChange={handleNameChange}
-          className="login-input"
-        />
         <label htmlFor="email" className="login-label">Email</label>
         <input
           type="email"
@@ -79,7 +69,7 @@ const LoginComponent = () => {
           onChange={handlePasswordChange}
           className="login-input"
         />
-        <button type="submit" className="login-button">Create Account</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
     </div>
   );
