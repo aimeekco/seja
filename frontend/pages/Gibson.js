@@ -8,6 +8,36 @@ import '../styles/gibson.css';
 const Gibson = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [popupContent, setPopupContent] = useState("");
+    const [data, setData] = useState([]);
+    const [roomStatus, setRoomStatus] = useState({});
+
+    const roomCoords = {
+        "Gibson 418" : '40, 100, 600, 200',
+        "Gibson 419" : '144, 0, 288, 100',
+        "Gibson 420" : '288, 0, 432, 100',
+        "Gibson 421" : '432, 0, 576, 100',
+        // Add more rooms as needed
+      };
+
+      const fetchRoomStatus = () => {
+        areas.forEach(area => {
+          fetch('http://127.0.0.1:5000/checkroom', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ room: area.room }),
+          })
+            .then(response => response.json())
+            .then(data => setRoomStatus(prevStatus => 
+                
+                ({ ...prevStatus, [area.room]: data.message })))
+            .catch(error => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' })));
+        });
+      };
+ 
+      useEffect(fetchRoomStatus, []);
+    
     function togglePopup(content) {
         setPopupContent(content);
         setShowPopup(!showPopup);
@@ -66,9 +96,9 @@ const Gibson = () => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log("clicked")
+        
         fetchRoomStatus();
-
+        console.log(data)
       // Update the color of the area based on the response
       // You'll need to replace this comment with the appropriate code for your application
     })

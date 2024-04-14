@@ -14,16 +14,21 @@ print(users)
 def register():
     global users
     data = request.get_json()
+    session['email'] = data['email']
+    session['name'] = data['name']
+    session['time'] = data['time']
+    session['year'] = data['year']
     hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
     new_user = pd.DataFrame([[data['name'], data['email'], hashed_password, data['year'], data['time'], None]], columns=['name', 'email', 'password', 'year','time','room'])
     users = pd.concat([users, new_user], ignore_index=True)
     print(users)
-    print("hello")
+    print(session['email'])
     return jsonify({'message': 'Registered successfully'}), 200
 
 @app.route('/login', methods=['POST'])
 def login():
     global users
+    print("trying to login")
     data = request.get_json()
     filtered_users = users[users['email'] == data['email']]
     if filtered_users.empty:
@@ -32,7 +37,7 @@ def login():
     if user.empty or not check_password_hash(user['password'], data['password']):
         return jsonify({'message': 'Login failed'}), 401
     session['email'] = data['email']
-    session['name'] = data['name']
+    session['name'] = user['name']
     session['time'] = user['time']
     session['year'] = user['year']
     session['room'] = user['room']
@@ -58,9 +63,11 @@ def login():
 def assign():
     global users
     data = request.get_json()
-    email = session.get('email')
-    new_room = data['room']
     print(users)
+    
+    email = session['email']
+    new_room = data['room']
+    print(email)
     # Find the user's row
     filtered_users = users[users['email'] == email]
     if not filtered_users.empty:
