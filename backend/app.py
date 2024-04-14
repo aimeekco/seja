@@ -60,6 +60,7 @@ def assign():
     data = request.get_json()
     email = session.get('email')
     new_room = data['room']
+    print(users)
     # Find the user's row
     filtered_users = users[users['email'] == email]
     if not filtered_users.empty:
