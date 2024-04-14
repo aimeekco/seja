@@ -26,7 +26,7 @@ const LoginComponent = () => {
       alert("Passwords don't match!");
       return;
     }
-  
+   
     const postData = { name, email, password, year, time };
    
     try {
