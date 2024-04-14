@@ -38,20 +38,20 @@ def login():
     session['room'] = user['room']
     return jsonify({'message': 'Login successful'}), 200
 
-@app.route('/time', methods=['POST'])
-def time():
-    global users
-    data = request.get_json()
-    email = session.get('email')
-    drawtime = data['time']
-    # Find the user's row
-    user_index = users[users['email'] == email].index[0]
-    if user_index is not None:
-        # Update the user's row
-        users.loc[user_index, 'time'] = drawtime
-        return jsonify({'message': 'Updated successfully'}), 200
-    else:
-        return jsonify({'message': 'User not found'}), 404
+# @app.route('/time', methods=['POST'])
+# def time():
+#     global users
+#     data = request.get_json()
+#     email = session.get('email')
+#     drawtime = data['time']
+#     # Find the user's row
+#     user_index = users[users['email'] == email].index[0]
+#     if user_index is not None:
+#         # Update the user's row
+#         users.loc[user_index, 'time'] = drawtime
+#         return jsonify({'message': 'Updated successfully'}), 200
+#     else:
+#         return jsonify({'message': 'User not found'}), 404
 
 
 @app.route('/assign', methods=['POST'])
@@ -103,17 +103,17 @@ def check_room():
         return jsonify({'message': 'Empty'}), 200
     
 @app.route('/name', methods=['POST'])
-def check_room():
+def name():
     global users
     return jsonify({'message': str(session['name'])}), 200
 
 @app.route('/time', methods=['POST'])
-def check_room():
+def time():
     global users
     return jsonify({'message': str(session['time'])}), 200
 
 @app.route('/room', methods=['POST'])
-def check_room():
+def room():
     global users
     return jsonify({'message': str(session['room'])}), 200
 

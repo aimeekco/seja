@@ -9,6 +9,14 @@ const Gibson = () => {
     const [popupContent, setPopupContent] = useState("");
     const [data, setData] = useState([]);
 
+    const roomCoords = {
+        "Gibson 418" : '40,100, 600, 200',
+        "Gibson 419" : '144,0, 288, 100',
+        "Gibson 420" : '288,0, 432, 100',
+        "Gibson 421" : '432,0, 576, 100',
+        // Add more rooms as needed
+      };
+
     useEffect(() => {
         areas.forEach(area => {
           fetch('http://127.0.0.1:5000/checkroom', {
@@ -45,20 +53,6 @@ const Gibson = () => {
         content: item.content,
         color: determineColor(item),  // determineColor is a function that returns a color based on the item
       }));
-
-
-      function determineColor(item) {
-        if (item.user) {
-          // If the room value corresponds to the user's name, return blue
-          return 'blue';
-        } else if (item.room) {
-          // If the room value exists, return red
-          return 'red';
-        } else {
-          // If the room value doesn't exist, return green
-          return 'green';
-        }
-      }
 
     
 
