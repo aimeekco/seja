@@ -28,7 +28,9 @@ const Gibson = () => {
             body: JSON.stringify({ room: area.room }),
           })
             .then(response => response.json())
-            .then(data => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: data.message })))
+            .then(data => setRoomStatus(prevStatus => 
+                
+                ({ ...prevStatus, [area.room]: data.message })))
             .catch(error => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' })));
         });
       };
