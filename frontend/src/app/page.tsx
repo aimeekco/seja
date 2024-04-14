@@ -1,12 +1,17 @@
 import React from 'react';
 import Landing from "../../pages/Landing";
 import Navbar from "../../pages/Navbar";
+import Pomona from "../../pages/Pomona";
+
+import { BrowserRouter as Router } from "react-router-dom";
+import {UserInfo} from "../../pages/UserInfo";
 
 export default function Home() {
   return (
       <div >
         <Navbar />
         <Landing />
+        <UserInfo />
       </div>
   );
 }
