@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useState  , useEffect} from 'react';
 import '../styles/gibson.css';
 
 
@@ -45,30 +46,49 @@ const Gibson = () => {
                     style={{width: 700}}
                 />
                 {areas.map((area, index) => {
-                    const coords = area.coords.split(',').map(Number);
-                    const style = {
-                        left: `${coords[0]}px`, 
-                        top: `${coords[1]}px`, 
-                        width: `${coords[2] - coords[0]}px`, 
-                        height: `${coords[3] - coords[1]}px`
-                    };
-                    return (
-                        <div
-                            key={index}
-                            className="overlay"
-                            style={style}
-                            onClick={() => togglePopup(area.content)}
-                        />
-                    );
-                })}
+  const coords = area.coords.split(',').map(Number);
+  const style = {
+    left: `${coords[0]}px`, 
+    top: `${coords[1]}px`, 
+    width: `${coords[2] - coords[0]}px`, 
+    height: `${coords[3] - coords[1]}px`,
+    backgroundColor: determineColor(area.room),
+    position: 'relative', // Add this to position the status text inside the square
+  };
+
+  const handleClick = () => {
+    fetch('http://127.0.0.1:5000/assign', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ room: area.room }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("clicked")
+        fetchRoomStatus();
+
+      // Update the color of the area based on the response
+      // You'll need to replace this comment with the appropriate code for your application
+    })
+    .catch(error => console.error('Error:', error));
+  };
+
+  return (
+    <div
+      key={index}
+      className="overlay"
+      style={style}
+      onClick={handleClick}
+    >
+      <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+        {area.status || 'Loading...'}
+      </div>
+    </div>
+  );
+})}
             </div>
-            {showPopup && (
-                <div className="gibson-popup">
-                    {popupContent.split('\n').map((line, index) => (
-                        <div key = {index}>{line}</div>
-                    ))}
-                </div>
-            )}
         </div>
     );
 }
