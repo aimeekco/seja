@@ -34,7 +34,7 @@ const Gibson = () => {
             .catch(error => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' })));
         });
       };
-
+ 
       useEffect(fetchRoomStatus, []);
     
     function togglePopup(content) {
