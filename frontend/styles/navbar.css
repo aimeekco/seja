@@ -1,51 +1,60 @@
+/* Base styles for the navbar */
 .navbar {
     font-family: "Poppins", sans-serif;
     font-size: 18px;
     margin: 0;
-    display: grid;
+    padding: 10px 20px;
     background-color: #0057b8;
     color: white;
-    padding: 10px 20px;
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;         /* Ensure the navbar aligns to the left edge */
+    width: 100%;     /* Ensure the navbar spans the full width */
+    display: flex;   /* Using flex to better control alignment */
+    justify-content: space-between; /* Space between will push child elements to edges */
+    align-items: center; /* Vertically centers content within the navbar */
     z-index: 1000;
+    box-sizing: border-box; /* Include padding and border in the element's width and height */
 }
 
+/* Navbar container setup for internal alignment */
 .navbar-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Ensures elements are spaced out to each side */
     align-items: center;
-    max-width: 100%;
+    width: 100%;     /* Allows the container to stretch fully within the navbar */
 }
 
+/* Styling for the navbar logo */
 .navbar-logo {
     font-weight: bold;
     font-size: 20px;
-    text-decoration: none;
     color: white;
+    text-decoration: none;
 }
 
+/* Styling for account-related links, if present */
 .my-account a {
     color: white;
     text-decoration: none;
     padding: 15px;
-    transition: background-color 0.3s, color 0.3s;
     border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .my-account a:hover {
     background-color: #10458a;
-    color: #fff;
-    border-radius: 10px;
+    color: white; /* Ensuring text color does not change unexpectedly */
 }
 
+/* Dropdown menu styles, aligned to the right */
 .dropdown {
+    margin-left: auto; /* This will push the dropdown to the right */
     position: relative;
     display: inline-block;
     border-radius: 10px;
 }
-  
+
 .dropbtn {
     background-color: #0057b8;
     color: white;
@@ -55,26 +64,19 @@
     border-radius: 10px;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
-    margin-right:10px;
 }
 
 .dropbtn:hover {
     background-color: #10458a;
-    color: #fff;
-    border-radius: 10px;
+    color: white;
 }
-  
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-  
+
+/* Dropdown content (hidden initially) */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     z-index: 1;
 }
 
@@ -94,5 +96,7 @@
 }
 
 .dropdown:hover .dropbtn {
-    padding: 15px;
+    background-color: #10458a; /* Ensure consistent hover effect */
 }
+
+
