@@ -14,7 +14,7 @@ print(users)
 def register():
     global users
     data = request.get_json()
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
     new_user = pd.DataFrame([[data['name'], data['email'], hashed_password, data['year'], data['time'], None]], columns=['name', 'email', 'password', 'year','time','room'])
     users = pd.concat([users, new_user], ignore_index=True)
     print(users)

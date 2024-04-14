@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 // import ImgMapper from 'react-img-mapper';
-import { useRouter } from 'next/router';
+import { useRouter} from 'next/router';
 import { useState } from 'react';
 import '../styles/pomonamap.css';
 
