@@ -28,10 +28,10 @@
   left: 70vh; */
   width: 26px; /* Adjust according to your coordinates */
   height: 36px; /* Adjust according to your coordinates */
-  background-color: rgba(255, 0, 0, 0.5); /* Red color with 50% transparency */
+  background-color: rgba(255, 0, 0, 0); /* Red color with 50% transparency */
   cursor: pointer; /* Change cursor on hover to indicate it's clickable */
 }
 
 .overlay:hover {
-  background-color: rgba(255, 0, 0, 0.8); /* Darker red when hovered */
+  background-color: rgba(255, 0, 0, 0); /* Darker red when hovered */
 }

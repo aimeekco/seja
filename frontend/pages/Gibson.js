@@ -1,6 +1,6 @@
 'use client';
 import '../styles/gibson.css';
-import React, { useState, useEffect } from 'react'; // Add this line
+import React, { useState, useEffect} from 'react'; // Add this line
 
 
 const Gibson = () => {
@@ -8,6 +8,9 @@ const Gibson = () => {
     const [popupContent, setPopupContent] = useState("");
     const [data, setData] = useState([]);
     const [roomStatus, setRoomStatus] = useState({});
+const [clickedRoom, setClickedRoom] = useState(null);
+
+
 
     const roomCoords = {
     "Gibson 418": '-40,10, 66, 84',
@@ -120,7 +123,10 @@ const Gibson = () => {
                             height: `${coords[3] - coords[1]}px`,
                             position: 'absolute'
                         }}
-                        onClick={() => handleClick(room)} // Add this line
+                        onClick={() => {
+                            handleClick(room);
+                            setClickedRoom(room);
+                        }} // Add this line
 
                     >
                         <span style={{ position: 'absolute', bottom: '10px', right: '10px' }}>

@@ -43,17 +43,18 @@
 }
   
 .overlay-claimed {
-    background-color: rgba(0, 0, 255, 0.5); /* Blue */
+    background-color: rgba(0, 0, 255, 0.5)  !important; /* Blue */
+   
 }
 .overlay-claimed:hover {
-    background-color: rgba(0, 0, 255, 0.8); /* Darker blue on hover */
+    background-color: rgba(0, 0, 255, 0.8) !important; /* Darker blue on hover */
 }
 
 .overlay-occupied {
-    background-color: rgba(255, 0, 0, 0.5); /* Red */
+    background-color: rgba(255, 0, 0, 0.5) !important; /* Red */
 }
 .overlay-occupied:hover {
-    background-color: rgba(255, 0, 0, 0.8); /* Darker red on hover */
+    background-color: rgba(255, 0, 0, 0.8) !important; /* Darker red on hover */
 }
 
 .overlay-available {
