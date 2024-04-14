@@ -1,35 +1,36 @@
-//'use client';
-import ImgMapper from 'react-img-mapper';
+'use client';
+import React from 'react';
+// import ImgMapper from 'react-img-mapper';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import '../styles/pomonamap.css';
 
-export default function Pomona() {
-  const router = useRouter();
-  const map = {
-    name: "my-map",
-    areas: [
-      { 
-        name: "Area 1", 
-        shape: "rect", 
-        coords: [0,0,100,100], 
-        onClick: () => {
-            console.log('Area 1 clicked');
-            router.push('/Gibson') 
-        }
-      },
-      { 
-        name: "Area 2", 
-        shape: "rect", 
-        coords: [100,100,200,200], 
-        onClick: () => router.push('/page2') 
-      },
-      // Add more areas as needed
-    ]
-  };
-  const pomonaImage = '/pomonamap.jpeg';
+const Pomona = () => {
+    const router = useRouter();
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupContent, setPopupContent] = useState("");
+    function togglePopup(content) {
+        setPopupContent(content);
+        setShowPopup(!showPopup);
+    }
 
-  return (
-    <div>
-      <ImgMapper src={pomonaImage} map={map} />
-    </div>
+    return (
+      <div className="image-container">
+        <img
+          src="pomonamap.jpeg"
+          alt="Pomona"
+          useMap="#gfg_map"
+          style={{ width: "auto", height: "auto" }}
+        />
+        <div className="overlay" onClick={() => router.push('/Gibson')} />
+        {showPopup && (
+          <div className="pomona-popup">
+            {popupContent.split('\n').map((line, index) => (
+              <div key={index}>{line}</div>
+            ))}
+          </div>
+        )}
+      </div>
   );
 }
+export default Pomona;
