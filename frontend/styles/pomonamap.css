@@ -1,0 +1,18 @@
+.image-container {
+  position: relative; /* Ensure the container is positioned */
+}
+
+.overlay {
+  position: absolute;
+  top: 162vh; /* Adjust according to your coordinates */
+  left: 99vh; /* Adjust according to your coordinates */
+  transform: translate(-50%, -50%);
+  width: 35px; /* Adjust according to your coordinates */
+  height: 50px; /* Adjust according to your coordinates */
+  background-color: rgba(255, 0, 0, 0.5); /* Red color with 50% transparency */
+  cursor: pointer; /* Change cursor on hover to indicate it's clickable */
+}
+
+.overlay:hover {
+  background-color: rgba(255, 0, 0, 0.8); /* Darker red when hovered */
+}
