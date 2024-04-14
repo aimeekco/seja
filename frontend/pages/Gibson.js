@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { useState } from 'react';
-import '../styles/gibson.css'
 
 
 const Gibson = () => {
@@ -14,41 +13,41 @@ const Gibson = () => {
 
     return (
         <div>
-        <img>
-            src= "gibson.png"
-            alt="Gibson" 
-            usemap="#gfg_map"
-            style={{width: 400, height: 400}}
-        </img>
-        <map name="gfg_map">
-            <area shape = "rect"
-            coords = "0,0, 144, 100"
-            alt = "Gibson 418"
-            onClick = {popup}
+            <img
+                src= "gibson.png"
+                alt="Gibson" 
+                usemap="#gfg_map"
+                style={{width: 400, height: 400}}
             />
-            <area shape = "rect"
-            coords = "144,0, 288, 100"
-            alt = "Gibson 419"
-            onClick = {popup}
-            />
-            <area shape = "rect"
-            coords = "288,0, 432, 100"
-            alt = "Gibson 420"
-            onClick = {popup}
-            />
-            <area shape = "rect"
-            coords = "432,0, 576, 100"
-            alt = "Gibson 421"
-            onClick = {popup}
-            />
-        </map>
-        {showPopup && (
-            <div className="gibson-popup">
-                {popupContent.split('\n').map((line, index) => (
-                    <div key = {index}>{line}</div>
-                ))}
-            </div>
-        )}
+            <map name="gfg_map">
+                <area shape = "rect"
+                coords = "0,0, 144, 100"
+                alt = "Gibson 418"
+                onClick={() => togglePopup('Gibson 418\nModel details')}
+                />
+                <area shape = "rect"
+                coords = "144,0, 288, 100"
+                alt = "Gibson 419"
+                onClick={() => togglePopup('Gibson 419\nModel details')}
+                />
+                <area shape = "rect"
+                coords = "288,0, 432, 100"
+                alt = "Gibson 420"
+                onClick={() => togglePopup('Gibson 420\nModel details')}
+                />
+                <area shape = "rect"
+                coords = "432,0, 576, 100"
+                alt = "Gibson 421"
+                onClick={() => togglePopup('Gibson 421\nModel details')}
+                />
+            </map>
+            {showPopup && (
+                <div className="gibson-popup">
+                    {popupContent.split('\n').map((line, index) => (
+                        <div key = {index}>{line}</div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

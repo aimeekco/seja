@@ -25,7 +25,7 @@ function UserInfo() {
     const router = useRouter();
     const handleSubmit = (event) => {
         event.preventDefault();
-        router.push('/Pomona'); 
+        router.push('/Gibson'); 
     };
 
     return (
@@ -59,7 +59,7 @@ function UserInfo() {
                         </div>
                     </div>
                     <CardFooter className="flex justify-center">
-                        <Button type="submit" className="w-full">
+                        <Button type="submit" className="w-full" onClick={handleSubmit}>
                             Confirm
                         </Button>
                     </CardFooter>
