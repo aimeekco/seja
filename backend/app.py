@@ -1,11 +1,27 @@
 from flask import Flask, request, jsonify, session
+from flask_session import Session
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import pandas as pd
+from redis import Redis
+
 
 app = Flask(__name__)
-CORS(app)
-app.config['SECRET_KEY'] = 'your-secret-key'  # Replace with your secret key
+app.config["SESSION_PERMANENT"] = False
+#app.config['SESSION_TYPE'] = PER
+#app.config['SESSION_REDIS'] = Redis(host='localhost', port=6379)
+
+app.config['SECRET_KEY'] = 'your-secret-key'  # Replace with your actual secret key
+#app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
+app.config['SESSION_COOKIE_NAME'] = 'yourappsession'
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SECURE'] = True  # Only set to True if using HTTPS
+app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
+
+#Session(app)
+#CORS(app)
+CORS(app, supports_credentials=True)  # Allowing credentials for CORS
+#CORS(app, supports_credentials=True, resources={r"/*": {"origins": ["http://localhost:3001"]}})
 
 # Initialize DataFrame
 users = pd.DataFrame(columns=['name','email', 'password', 'year', 'time', 'room'])
@@ -22,10 +38,11 @@ def register():
     new_user = pd.DataFrame([[data['name'], data['email'], hashed_password, data['year'], data['time'], None]], columns=['name', 'email', 'password', 'year','time','room'])
     users = pd.concat([users, new_user], ignore_index=True)
     print(users)
-    print(session['email'])
+    print('SESSION EMAIL: ' + session['email'])
+    session.modified = True
     return jsonify({'message': 'Registered successfully'}), 200
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     global users
     print("trying to login")
@@ -41,6 +58,8 @@ def login():
     session['time'] = user['time']
     session['year'] = user['year']
     session['room'] = user['room']
+    session.modified = True
+
     return jsonify({'message': 'Login successful'}), 200
 
 # @app.route('/time', methods=['POST'])
@@ -59,7 +78,7 @@ def login():
 #         return jsonify({'message': 'User not found'}), 404
  
 
-@app.route('/assign', methods=['POST'])
+@app.route('/assign', methods=['GET', 'POST'])
 def assign():
     global users
     data = request.get_json()
@@ -99,7 +118,7 @@ def assign():
     else:
         return jsonify({'message': 'User not found'}), 410
 
-@app.route('/checkroom', methods=['POST'])
+@app.route('/checkroom', methods=['GET', 'POST'])
 def check_room():
     global users
     data = request.get_json()
@@ -114,17 +133,17 @@ def check_room():
         print("empty")
         return jsonify({'message': 'Empty'}), 200
     
-@app.route('/name', methods=['POST'])
+@app.route('/name', methods=['GET'])
 def name():
     global users
     return jsonify({'message': str(session['name'])}), 200
 
-@app.route('/time', methods=['POST'])
+@app.route('/time', methods=['GET'])
 def time():
     global users
     return jsonify({'message': str(session['time'])}), 200
 
-@app.route('/room', methods=['POST'])
+@app.route('/room', methods=['GET'])
 def room():
     global users
     return jsonify({'message': str(session['room'])}), 200
