@@ -1,12 +1,30 @@
 .image-container {
-  position: relative; /* Ensure the container is positioned */
+  /* position: relative; Ensure the container is positioned */
+  text-align: center;
+  /* flex-shrink: 0; */
+  /* display: inline-block; */
+  /* height: 55px; */
+  max-width: 100vw; /* Ensure the image does not exceed the container width */
+  max-height: 100vh; /* Limit the image height to the viewport height */
+  margin: auto; /* Center horizontally */
+  display: block; /* Ensure the image is treated as a block element */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  width: auto;
+  height: auto;
+  float: left;
 }
 
 .overlay {
   position: absolute;
-  top: 162vh; /* Adjust according to your coordinates */
-  left: 99vh; /* Adjust according to your coordinates */
-  transform: translate(-50%, -50%);
+  /* top: 86.5%;
+  left: 43%; */
+  top: 145vh; 
+  left: 70vh;
+  /* transform: translate(-50%, -50%); */
   width: 35px; /* Adjust according to your coordinates */
   height: 50px; /* Adjust according to your coordinates */
   background-color: rgba(255, 0, 0, 0.5); /* Red color with 50% transparency */
