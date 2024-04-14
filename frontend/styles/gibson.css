@@ -1,0 +1,30 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 90px;
+}
+
+.gibson-popup {
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 20px;
+  position: fixed;
+  z-index: 9;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.5); /* Red color with 50% transparency */
+    transition: background-color 0.3s ease; /* Smooth transition for the background color */
+}
+  
+.overlay:hover {
+    background-color: rgba(255, 0, 0, 0.8); /* Darker red when hovered */
+}
