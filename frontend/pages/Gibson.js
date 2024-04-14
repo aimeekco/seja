@@ -1,7 +1,6 @@
 'use client';
-import React from 'react';
-import { useState  , useEffect} from 'react';
 import '../styles/gibson.css';
+import React, { useState, useEffect } from 'react'; // Add this line
 
 
 const Gibson = () => {
@@ -46,12 +45,18 @@ const Gibson = () => {
           body: JSON.stringify({ room: area.room }),
         })
           .then(response => response.json())
-          .then(data => setRoomStatus(prevStatus => 
-              
-              ({ ...prevStatus, [area.room]: data.message })))
-          .catch(error => setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' })));
-      });
-    };
+          .then(data => {
+            setRoomStatus(prevStatus => {
+              const updatedStatus = { ...prevStatus, [area.room]: data.message };
+              return updatedStatus;
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching room status:', error);
+          setRoomStatus(prevStatus => ({ ...prevStatus, [area.room]: 'Error fetching room status' }));
+        });
+    });
+  };
  
     useEffect(fetchRoomStatus, []);
     
