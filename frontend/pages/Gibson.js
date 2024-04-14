@@ -16,7 +16,7 @@ const Gibson = () => {
             <img
                 src= "gibson.png"
                 alt="Gibson" 
-                usemap="#gfg_map"
+                useMap="#gfg_map"
                 style={{width: 400, height: 400}}
             />
             <map name="gfg_map">
